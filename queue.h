@@ -1,0 +1,90 @@
+#include <iostream>
+
+using namespace std;
+
+struct node {
+    int element;
+    node* next;
+
+    // Parameterised Constructor
+    node(int element)
+    {
+        this->element = element;
+        this->next = NULL;
+    }
+};
+
+// Circular Queue implementation using Array
+class queue_using_array
+{
+    private:
+        // Front pointer
+        int* front;
+
+        // Rear pointer
+        int* rear;
+
+        // Array to store elements
+        int* array_queue;
+
+        // Number of elements in array_queue
+        int size;
+
+        // Maximum elements an array_queue can store
+        int capacity;
+
+    public:
+        // Enqueues element into the array Queue from the specified file and returns true if success.
+        bool enqueue_input_file(string filename);
+
+        // Enqueues element into the array Queue from the command line and returns true if success.
+        bool enqueue_command_line(int element);
+
+        // Dequeues the element from the Array Queue and returns true if success.
+        bool dequeue(int& element);
+};
+
+// Queue implementation using Singly Linked list (Unsorted)
+class queue_using_unsorted_linked_list
+{
+    private:
+        // Front/Head pointer
+        node* front;
+
+        // Rear/Tail pointer
+        node* rear;
+
+    public:
+        // Insert elements into the Queue from given file and returns true if success.
+        bool enqueue_input_file(string filename);
+
+        // Insert given element into the Queue from command line and returns true if success.
+        bool enqueue_command_line(int element);
+
+        // Delete given element from the Queue and returns true if success.
+        bool dequeue(int& element);
+};
+
+// Queue implementation using Singly Linked list (Sorted: Ascending order)
+class queue_using_sorted_linked_list
+{
+    private:
+        // Front/Head pointer
+        node* front;
+
+        // Rear/Tail pointer
+        node* rear;
+
+    public:
+        // Insert elements into the Queue from given file and returns true if success.
+        bool enqueue_input_file(string filename);
+
+        // Insert given element into the Queue from command line and returns true if success.
+        bool enqueue_command_line(int element);
+
+        // Traverses the Queue and returns true if given element is found.
+        bool search(int element);
+
+        // Delete given element from the Queue and returns true if success.
+        bool dequeue(int& element);
+};
