@@ -3,7 +3,10 @@
 using namespace std;
 
 struct node {
+    // Data to be stored
     int element;
+
+    // Pointer to store next link
     node* next;
 
     // Parameterised Constructor
