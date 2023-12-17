@@ -1,5 +1,6 @@
 #include "queue.cpp"
 #include <limits.h>
+#include <stddef.h>
 
 void command_prompt();
 bool get_input_from_user(int &input);
