@@ -37,7 +37,7 @@ class queue_using_array
         int capacity;
 
     public:
-        // Enqueues element into the array Queue from the specified file and returns true if success.
+        // Enqueues elements into the array Queue from the specified file and returns true if success.
         bool enqueue_input_file(string filename);
 
         // Enqueues element into the array Queue from the command line and returns true if success.
@@ -58,6 +58,12 @@ class queue_using_unsorted_linked_list
         node* rear;
 
     public:
+        // Constructor
+        queue_using_unsorted_linked_list();
+
+        // Destructor
+        ~queue_using_unsorted_linked_list();
+
         // Insert elements into the Queue from given file and returns true if success.
         bool enqueue_input_file(string filename);
 

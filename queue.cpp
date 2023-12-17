@@ -17,6 +17,14 @@ bool queue_using_array::dequeue(int& element)
 	return true;
 }
 
+queue_using_unsorted_linked_list::queue_using_unsorted_linked_list()
+{
+}
+
+queue_using_unsorted_linked_list::~queue_using_unsorted_linked_list()
+{
+}
+
 bool queue_using_unsorted_linked_list::enqueue_input_file(string filename)
 {
 	return true;
