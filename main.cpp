@@ -27,7 +27,7 @@ bool get_input_from_user(int& input)
 
     if (input < ENQUEUE_FILE_ARRAY || input > EXIT) {
         cin.clear();
-        cin.ignore((numeric_limits<streamsize>::max)(), '\n');
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "\n*** Invalid option entered, try again ***" << endl;
         return false;
     }
