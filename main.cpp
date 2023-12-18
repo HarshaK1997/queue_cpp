@@ -6,15 +6,18 @@ bool get_input_from_user(int& input)
     cout << "===== ============== ===== ===== === ====== =====\n" << endl;
     cout << " 1. Enqueue elements from file(s) to Array" << endl;
     cout << " 2. Enqueue elements from file(s) to Linked List" << endl;
-    cout << " 3. Enqueue elements from file(s) to Sorted Linked List" << endl;
+    cout << " 3. Enqueue elements from file(s) to Sorted List" << endl;
     cout << " 4. Enqueue element from command line to Array" << endl;
     cout << " 5. Enqueue element from command line to Linked List" << endl;
-    cout << " 6. Enqueue element from command line to Sorted Linked List" << endl;
+    cout << " 6. Enqueue element from command line to Sorted List" << endl;
     cout << " 7. Dequeue element from Array" << endl;
     cout << " 8. Dequeue element from Linked List" << endl;
-    cout << " 9. Dequeue element from Sorted Linked List" << endl;
-    cout << "10. Search given element from Sorted Linked List" << endl;
-    cout << "11. Exit" << endl;
+    cout << " 9. Dequeue element from Sorted List" << endl;
+    cout << "10. Search given element from Sorted List" << endl;
+    cout << "11. Display Array elements" << endl;
+    cout << "12. Display Linked List elements" << endl;
+    cout << "13. Display Sorted List elements" << endl;
+    cout << "14. Exit" << endl;
     cout << "Enter your choice: ";
     cin >> input;
 
@@ -38,6 +41,8 @@ bool get_input_from_user(int& input)
 void command_prompt() {
     // Get the choice from user
     int input = -1;
+    int element = -1;
+    int num_of_elements = -1;
     queue_using_array q_arr;
     queue_using_unsorted_linked_list q_list;
     queue_using_sorted_linked_list q_sorted_list;
@@ -52,7 +57,6 @@ void command_prompt() {
             break;
         case ENQUEUE_FILE_LIST:
             // TODO
-            q_list.enqueue_input_file("");
             break;
         case ENQUEUE_FILE_SORTED_LIST:
             // TODO
@@ -61,7 +65,13 @@ void command_prompt() {
             // TODO
             break;
         case ENQUEUE_ELEMENT_LIST:
-            // TODO
+            cout << "Enter the element to Enqueue: ";
+            // TODO Check if its integer, need to have common function
+            cin >> element;
+            if (q_list.enqueue_command_line(element))
+                cout << "Element inserted successfully" << endl;
+            else
+                cout << "Operation failed" << endl;
             break;
         case ENQUEUE_ELEMENT_SORTED_LIST:
             // TODO
@@ -71,6 +81,10 @@ void command_prompt() {
             break;
         case DEQUEUE_ELEMENT_LIST:
             // TODO
+            if (q_list.dequeue(element))
+                cout << "Element " << element << " is deleted successfully" << endl;
+            else
+                cout << "Operation failed" << endl;
             break;
         case DEQUEUE_ELEMENT_SORTED_LIST:
             // TODO
@@ -78,9 +92,18 @@ void command_prompt() {
         case SEARCH_ELEMENT_SORTED_LIST:
             // TODO
             break;
+        case DISPLAY_ARRAY:
+            break;
+        case DISPLAY_LIST:
+            cout << "Enter number of elements to display: ";
+            // TODO Check if its integer, need to have common function
+            cin >> num_of_elements;
+            q_list.display_queue_elements(num_of_elements);
+            break;
+        case DISPLAY_SORTED_LIST:
+            break;
         case EXIT:
-            // TODO: We need to call destructor and destroy and free up memory space and exit
-            q_list.~queue_using_unsorted_linked_list();
+            // TODO: We need to implement destructor functions to free up memory space before exit
             return;
         default:
             cout << "Unknown error occurred" << endl;
