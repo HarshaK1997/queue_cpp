@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -72,6 +73,9 @@ class queue_using_unsorted_linked_list
 
         // Delete given element from the Queue and returns true if success.
         bool dequeue(int& element);
+
+        // Print given number of elements from the Queue and returns true if success.
+        bool display_queue_elements(int num_of_elements);
 };
 
 // Queue implementation using Singly Linked list (Sorted: Ascending order)
@@ -85,6 +89,12 @@ class queue_using_sorted_linked_list
         node* rear;
 
     public:
+        // Constructor
+        queue_using_sorted_linked_list();
+
+        // Destructor
+        ~queue_using_sorted_linked_list();
+
         // Insert elements into the Queue from given file and returns true if success.
         bool enqueue_input_file(string filename);
 
@@ -96,4 +106,7 @@ class queue_using_sorted_linked_list
 
         // Delete given element from the Queue and returns true if success.
         bool dequeue(int& element);
+
+        // Print given number of elements from the Queue and returns true if success.
+        bool display_queue_elements(int num_of_elements);
 };
