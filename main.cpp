@@ -43,6 +43,7 @@ void command_prompt() {
     int input = -1;
     int element = -1;
     int num_of_elements = -1;
+    string filename = "";
     queue_using_array q_arr;
     queue_using_unsorted_linked_list q_list;
     queue_using_sorted_linked_list q_sorted_list;
@@ -56,10 +57,22 @@ void command_prompt() {
             // TODO
             break;
         case ENQUEUE_FILE_LIST:
-            // TODO
+            cout << "Enter the filename to enqueue its elements: ";
+            // TODO: Validate the file exists etc
+            cin >> filename;
+            if (q_list.enqueue_input_file(filename))
+                cout << "File contents enqueued to linked list queue successfully" << endl;
+            else
+                cout << "Operation failed" << endl;
             break;
         case ENQUEUE_FILE_SORTED_LIST:
-            // TODO
+            cout << "Enter the filename to enqueue its elements: ";
+            // TODO: Validate the file exists etc
+            cin >> filename;
+            if (q_sorted_list.enqueue_input_file(filename))
+                cout << "File contents enqueued to sorted linked list queue successfully" << endl;
+            else
+                cout << "Operation failed" << endl;
             break;
         case ENQUEUE_ELEMENT_ARRAY:
             // TODO
@@ -74,20 +87,28 @@ void command_prompt() {
                 cout << "Operation failed" << endl;
             break;
         case ENQUEUE_ELEMENT_SORTED_LIST:
-            // TODO
+            cout << "Enter the element to Enqueue: ";
+            // TODO Check if its integer, need to have common function
+            cin >> element;
+            if (q_sorted_list.enqueue_command_line(element))
+                cout << "Element inserted successfully" << endl;
+            else
+                cout << "Operation failed" << endl;
             break;
         case DEQUEUE_ELEMENT_ARRAY:
             // TODO
             break;
         case DEQUEUE_ELEMENT_LIST:
-            // TODO
             if (q_list.dequeue(element))
                 cout << "Element " << element << " is deleted successfully" << endl;
             else
                 cout << "Operation failed" << endl;
             break;
         case DEQUEUE_ELEMENT_SORTED_LIST:
-            // TODO
+            if (q_sorted_list.dequeue(element))
+                cout << "Element " << element << " is deleted successfully" << endl;
+            else
+                cout << "Operation failed" << endl;
             break;
         case SEARCH_ELEMENT_SORTED_LIST:
             // TODO
@@ -101,9 +122,12 @@ void command_prompt() {
             q_list.display_queue_elements(num_of_elements);
             break;
         case DISPLAY_SORTED_LIST:
+            cout << "Enter number of elements to display: ";
+            // TODO Check if its integer, need to have common function
+            cin >> num_of_elements;
+            q_sorted_list.display_queue_elements(num_of_elements);
             break;
         case EXIT:
-            // TODO: We need to implement destructor functions to free up memory space before exit
             return;
         default:
             cout << "Unknown error occurred" << endl;
