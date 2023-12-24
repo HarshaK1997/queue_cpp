@@ -94,23 +94,7 @@ bool queue_using_unsorted_linked_list::dequeue(int& element)
 
 bool queue_using_unsorted_linked_list::display_queue_elements(int num_of_elements)
 {
-	int n = num_of_elements;
-	node* temp = front;
-
-	// Traverse the node n times and print the elements
-	while (n-- && (temp != NULL)) {
-		cout << temp->element << " ";
-		temp = temp->next;
-	}
-
-	// Still elements are present
-	if (temp != NULL) {
-		cout << "...";
-	}
-
-	cout << endl;
-	// TODO: Check if return value is needed here!
-	return true;
+	return print_linked_list_elements(front, num_of_elements);
 }
 
 queue_using_sorted_linked_list::queue_using_sorted_linked_list()
@@ -211,6 +195,11 @@ bool queue_using_sorted_linked_list::dequeue(int& element)
 }
 
 bool queue_using_sorted_linked_list::display_queue_elements(int num_of_elements)
+{
+	return print_linked_list_elements(front, num_of_elements);
+}
+
+bool linked_list::print_linked_list_elements(node* front, int num_of_elements)
 {
 	int n = num_of_elements;
 	node* temp = front;

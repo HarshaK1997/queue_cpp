@@ -48,8 +48,15 @@ class queue_using_array
         bool dequeue(int& element);
 };
 
+class linked_list
+{
+    public:
+        // Print given number of elements from the Queue and returns true if success.
+        bool print_linked_list_elements(node* front, int num_of_elements);
+};
+
 // Queue implementation using Singly Linked list (Unsorted)
-class queue_using_unsorted_linked_list
+class queue_using_unsorted_linked_list : private linked_list
 {
     private:
         // Front/Head pointer
@@ -79,7 +86,7 @@ class queue_using_unsorted_linked_list
 };
 
 // Queue implementation using Singly Linked list (Sorted: Ascending order)
-class queue_using_sorted_linked_list
+class queue_using_sorted_linked_list : private linked_list
 {
     private:
         // Front/Head pointer
