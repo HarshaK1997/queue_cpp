@@ -111,7 +111,13 @@ void command_prompt() {
                 cout << "Operation failed" << endl;
             break;
         case SEARCH_ELEMENT_SORTED_LIST:
-            // TODO
+            cout << "Enter the element to search in sorted queue: ";
+            // TODO Check if its integer, need to have common function
+            cin >> element;
+            if (q_sorted_list.search(element))
+                cout << "Given element " << element << " is found in the list" << endl;
+            else
+                cout << "Element not found in the queue" << endl;
             break;
         case DISPLAY_ARRAY:
             break;
