@@ -170,7 +170,18 @@ bool queue_using_sorted_linked_list::enqueue_command_line(int element)
 
 bool queue_using_sorted_linked_list::search(int element)
 {
-	return true;
+	node* current = front;
+	while(current) {
+		// If current node element is greater than the given element in sorted queue, then given element is not present.
+		if (current->element > element) {
+			return false;
+		}
+		if (current->element == element) {
+			return true;
+		}
+		current = current->next;
+	}
+	return false;
 }
 
 bool queue_using_sorted_linked_list::dequeue(int& element)
