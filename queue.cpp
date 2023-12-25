@@ -55,6 +55,7 @@ bool queue_using_array::enqueue_command_line(int element)
 
 bool queue_using_array::dequeue(int& element)
 {
+	
 	if(front == -1 && rear == -1)    //Check if queue is empty
 		return false;
 
@@ -67,12 +68,12 @@ bool queue_using_array::dequeue(int& element)
 
 	else
 	{
+		element = array_queue[front];
 		front = (front + 1)%capacity;  //Increment the front by 1
 		return true;
 	}
 
 }
-
 bool queue_using_array::display_queue_elements(int num_of_elements)
 {
 	int current = front;           //assigning front value to current variable
@@ -82,7 +83,7 @@ bool queue_using_array::display_queue_elements(int num_of_elements)
 	else
 	{
 		cout << "Elements in the Queue are ";      //Display the elements
-		while (current <= rear && current < num_of_elements)
+		while (current <= rear && current <= num_of_elements)
 		{
 			cout << array_queue[current];          
 			current = (current + 1)%capacity;   //Increment the current value
