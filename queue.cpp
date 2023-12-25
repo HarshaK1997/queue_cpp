@@ -22,6 +22,7 @@ bool queue_using_array::enqueue_input_file(string filename)
 
 	while(!in.eof()) {
 		// Get data from file
+		cout << "Here";
 		getline(in, text);
 		// Incase if the line is empty, skip it
 		if (text == "") continue;
@@ -70,6 +71,27 @@ bool queue_using_array::dequeue(int& element)
 		return true;
 	}
 
+}
+
+bool queue_using_array::display_queue_elements(int num_of_elements)
+{
+	int current = front;           //assigning front value to current variable
+	if(front == -1 && rear ==-1)
+	cout << "Queue is empty";      //Check if queue is empty
+
+	else
+	{
+		cout << "Elements in the Queue are ";      //Display the elements
+		while (current <= rear && current < num_of_elements)
+		{
+			cout << array_queue[current];          
+			current = (current + 1)%capacity;   //Increment the current value
+
+		}
+	}
+	cout << endl;
+	// TODO: Check if return value is needed here!
+	return true;
 }
 
 queue_using_unsorted_linked_list::queue_using_unsorted_linked_list()

@@ -51,10 +51,16 @@ void command_prompt() {
     while (true) {
         // Loop till the user enters valid input
         while(!get_input_from_user(input));
-
         switch (input) {
+
         case ENQUEUE_FILE_ARRAY:
-            // TODO
+            cout << "Enter the filename to enqueue its elements: ";
+            // TODO: Validate the file exists are not
+            cin >> filename;
+            if (q_arr.enqueue_input_file(filename))
+                cout << "File contents enqueued to linked list queue successfully" << endl;
+            else
+                cout << "Operation failed" << endl;
             break;
         case ENQUEUE_FILE_LIST:
             cout << "Enter the filename to enqueue its elements: ";
@@ -124,10 +130,10 @@ void command_prompt() {
             // TODO
             break;
         case DISPLAY_ARRAY:
-            // cout << "Enter number of elements to display: ";
-            // // TODO Check if its integer, need to have common function
-            // cin >> num_of_elements;
-            // q_arr.display_queue_elements(num_of_elements);
+            cout << "Enter number of elements to display: ";
+            // TODO Check if its integer, need to have common function
+            cin >> num_of_elements;
+            q_arr.display_queue_elements(num_of_elements);
             break;
         case DISPLAY_LIST:
            //TODO Check if its integer, need to have common function
