@@ -23,10 +23,10 @@ class queue_using_array
 {
     private:
         // Front pointer
-        int* front;
+        int front;
 
         // Rear pointer
-        int* rear;
+        int rear;
 
         // Array to store elements
         int* array_queue;
@@ -38,6 +38,12 @@ class queue_using_array
         int capacity;
 
     public:
+        //Contructor
+        queue_using_array();
+
+        //Destructor
+        ~queue_using_array();
+
         // Enqueues elements into the array Queue from the specified file and returns true if success.
         bool enqueue_input_file(string filename);
 
@@ -46,6 +52,9 @@ class queue_using_array
 
         // Dequeues the element from the Array Queue and returns true if success.
         bool dequeue(int& element);
+
+        // Print given number of elements from the Queue and returns true if success.
+        bool display_queue_elements(int num_of_elements);
 };
 
 // Queue implementation using Singly Linked list (Unsorted)

@@ -2,19 +2,74 @@
 
 using namespace std;
 
+queue_using_array::queue_using_array()
+{
+	front = rear = -1;
+}
+
+queue_using_array::~queue_using_array()
+{	
+	while(front != rear)
+	{
+		front = front + 1;
+	}
+}
+
 bool queue_using_array::enqueue_input_file(string filename)
 {
+	ifstream in(filename);
+	string text;
+
+	while(!in.eof()) {
+		// Get data from file
+		getline(in, text);
+		// Incase if the line is empty, skip it
+		if (text == "") continue;
+		// Convert string to integer and store it in unsorted linked list
+		enqueue_command_line(stoi(text));
+	}
 	return true;
 }
 
 bool queue_using_array::enqueue_command_line(int element)
 {
+	//Condition to check if circular queue is empty
+	//TO DO check overflow condition and increase the array size
+	if (front == -1 && rear == -1)
+	{
+		front = 0;
+		rear = 0;
+		array_queue[rear] = element;
+	
+	}
+	else
+	{	
+		rear = (rear + 1)%capacity;      //rear is incremented to add the element
+		array_queue[rear] = element;    //Add the element at the end of the queue
+
+	}
+
 	return true;
 }
 
 bool queue_using_array::dequeue(int& element)
 {
-	return true;
+	if(front == -1 && rear == -1)    //Check if queue is empty
+		return false;
+
+	else if (front == rear)         //Check if queue has only one element
+	{
+		front = -1;
+		rear = -1;
+		return true;
+	}
+
+	else
+	{
+		front = (front + 1)%capacity;  //Increment the front by 1
+		return true;
+	}
+
 }
 
 queue_using_unsorted_linked_list::queue_using_unsorted_linked_list()

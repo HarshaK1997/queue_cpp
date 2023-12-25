@@ -75,7 +75,13 @@ void command_prompt() {
                 cout << "Operation failed" << endl;
             break;
         case ENQUEUE_ELEMENT_ARRAY:
-            // TODO
+            cout << "Enter the element to Enqueue: ";
+            // TODO Check if integer, need to have common function
+            cin >> element;
+            if (q_arr.enqueue_command_line(element))
+                cout << "Element inserted successfully" << endl;
+            else
+                cout << "Operation failed" << endl;
             break;
         case ENQUEUE_ELEMENT_LIST:
             cout << "Enter the element to Enqueue: ";
@@ -97,6 +103,10 @@ void command_prompt() {
             break;
         case DEQUEUE_ELEMENT_ARRAY:
             // TODO
+            if (q_arr.dequeue(element))
+                cout << "Element " << element << " is deleted successfully" << endl;
+            else
+                cout << "Operation failed" << endl;
             break;
         case DEQUEUE_ELEMENT_LIST:
             if (q_list.dequeue(element))
@@ -114,10 +124,13 @@ void command_prompt() {
             // TODO
             break;
         case DISPLAY_ARRAY:
+            // cout << "Enter number of elements to display: ";
+            // // TODO Check if its integer, need to have common function
+            // cin >> num_of_elements;
+            // q_arr.display_queue_elements(num_of_elements);
             break;
         case DISPLAY_LIST:
-            cout << "Enter number of elements to display: ";
-            // TODO Check if its integer, need to have common function
+           //TODO Check if its integer, need to have common function
             cin >> num_of_elements;
             q_list.display_queue_elements(num_of_elements);
             break;
