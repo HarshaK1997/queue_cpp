@@ -32,7 +32,7 @@ class queue_using_array
         int size = 0;
 
         // Maximum elements an array_queue can store
-        int capacity = 1000;
+        int capacity = 50000;
 
         // Array to store elements
         int* array_queue = new int[capacity];

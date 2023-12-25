@@ -48,16 +48,17 @@ bool queue_using_array::enqueue_command_line(int element)
 		size = rear;
 		if(size == capacity)                                  // Check for the overflow condition
 		{
-            capacity = 2 * capacity;
+            capacity = 2 * capacity ;
 			int* array_queue_new = new int[capacity];
 			for (int i = 0; i < size; i++)
 			{
 				array_queue_new[i] = array_queue[i];
 			}
 			delete []array_queue;                                     //Delete old memory
-			array_queue = array_queue_new;                            //Change the array name
-			array_queue_new = NULL;                                  //Delete the new array name
+			array_queue = array_queue_new;                           //Change the array name
+			array_queue_new = NULL;                              //Delete the new array name
 		}	
+
 		rear = (rear + 1);              //rear is incremented to add the element
 		array_queue[rear] = element;    //Add the element at the end of the queue
 
