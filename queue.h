@@ -28,14 +28,15 @@ class queue_using_array
         // Rear pointer
         int rear;
 
-        // Array to store elements
-        int* array_queue;
-
         // Number of elements in array_queue
-        int size;
+        int size = 0;
 
         // Maximum elements an array_queue can store
-        int capacity;
+        int capacity = 1000;
+
+        // Array to store elements
+        int* array_queue = new int[capacity];
+
 
     public:
         //Contructor

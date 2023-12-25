@@ -58,7 +58,7 @@ void command_prompt() {
             // TODO: Validate the file exists are not
             cin >> filename;
             if (q_arr.enqueue_input_file(filename))
-                cout << "File contents enqueued to linked list queue successfully" << endl;
+                cout << "File contents enqueued to array queue successfully" << endl;
             else
                 cout << "Operation failed" << endl;
             break;
