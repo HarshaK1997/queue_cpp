@@ -48,8 +48,21 @@ class queue_using_array
         bool dequeue(int& element);
 };
 
+class linked_list_queue
+{
+    public:
+        // Traverses the Queue and returns true if given element is found.
+        bool search(node* front, int element);
+
+        // Delete given element from the Queue and returns true if success.
+        bool dequeue(node** front, node** rear, int& element);
+
+        // Print given number of elements from the Queue.
+        void print_linked_list_elements(node* front, int num_of_elements);
+};
+
 // Queue implementation using Singly Linked list (Unsorted)
-class queue_using_unsorted_linked_list
+class queue_using_unsorted_linked_list : private linked_list_queue
 {
     private:
         // Front/Head pointer
@@ -74,12 +87,12 @@ class queue_using_unsorted_linked_list
         // Delete given element from the Queue and returns true if success.
         bool dequeue(int& element);
 
-        // Print given number of elements from the Queue and returns true if success.
-        bool display_queue_elements(int num_of_elements);
+        // Print given number of elements from the Queue.
+        void display_queue_elements(int num_of_elements);
 };
 
 // Queue implementation using Singly Linked list (Sorted: Ascending order)
-class queue_using_sorted_linked_list
+class queue_using_sorted_linked_list : private linked_list_queue
 {
     private:
         // Front/Head pointer
@@ -107,6 +120,6 @@ class queue_using_sorted_linked_list
         // Delete given element from the Queue and returns true if success.
         bool dequeue(int& element);
 
-        // Print given number of elements from the Queue and returns true if success.
-        bool display_queue_elements(int num_of_elements);
+        // Print given number of elements from the Queue.
+        void display_queue_elements(int num_of_elements);
 };

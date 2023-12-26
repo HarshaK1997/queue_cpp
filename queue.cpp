@@ -56,6 +56,10 @@ bool queue_using_unsorted_linked_list::enqueue_input_file(string filename)
 bool queue_using_unsorted_linked_list::enqueue_command_line(int element)
 {
 	// Create a new node
+	if (search(front, element)) {
+		//duplicate
+		return false;
+	}
 	// TODO: Need to check if node can be created, if no space, then return false
 	node* new_node = new node(element);
 
@@ -73,44 +77,13 @@ bool queue_using_unsorted_linked_list::enqueue_command_line(int element)
 
 bool queue_using_unsorted_linked_list::dequeue(int& element)
 {
-	// Underflow check
-	if (front == NULL)
-		return false;
-
-	// Store the front and move front one node ahead
-	node* del_node = front;
-	front = front->next;
-
-	// Get the popped element to return and delete the node
-	element = del_node->element;
-	delete(del_node);
-
-	// If front is NULL, then the queue is empty. Hence update the rear also as NULL
-	if (front == NULL)
-		rear = NULL;
-
-	return true;
+	return linked_list_queue::dequeue(&front, &rear, element);
 }
 
-bool queue_using_unsorted_linked_list::display_queue_elements(int num_of_elements)
+void queue_using_unsorted_linked_list::display_queue_elements(int num_of_elements)
 {
-	int n = num_of_elements;
-	node* temp = front;
-
-	// Traverse the node n times and print the elements
-	while (n-- && (temp != NULL)) {
-		cout << temp->element << " ";
-		temp = temp->next;
-	}
-
-	// Still elements are present
-	if (temp != NULL) {
-		cout << "...";
-	}
-
-	cout << endl;
-	// TODO: Check if return value is needed here!
-	return true;
+	print_linked_list_elements(front, num_of_elements);
+	return;
 }
 
 queue_using_sorted_linked_list::queue_using_sorted_linked_list()
@@ -202,26 +175,16 @@ bool queue_using_sorted_linked_list::search(int element)
 
 bool queue_using_sorted_linked_list::dequeue(int& element)
 {
-	// Underflow check
-	if (front == NULL)
-		return false;
-
-	// Store the front and move front one node ahead
-	node* del_node = front;
-	front = front->next;
-
-	// Get the popped element to return and delete the node
-	element = del_node->element;
-	delete(del_node);
-
-	// If front is NULL, then the queue is empty. Hence update the rear also as NULL
-	if (front == NULL)
-		rear = NULL;
-
-	return true;
+	return linked_list_queue::dequeue(&front, &rear, element);
 }
 
-bool queue_using_sorted_linked_list::display_queue_elements(int num_of_elements)
+void queue_using_sorted_linked_list::display_queue_elements(int num_of_elements)
+{
+	print_linked_list_elements(front, num_of_elements);
+	return;
+}
+
+void linked_list_queue::print_linked_list_elements(node* front, int num_of_elements)
 {
 	int n = num_of_elements;
 	node* temp = front;
@@ -238,6 +201,39 @@ bool queue_using_sorted_linked_list::display_queue_elements(int num_of_elements)
 	}
 
 	cout << endl;
-	// TODO: Check if return value is needed here!
+	return;
+}
+
+bool linked_list_queue::search(node* front, int element)
+{
+	node* current = front;
+
+	while(current) {
+		if (current->element == element) {
+			// duplicate element is present
+			return true;
+		}
+		current = current->next;
+	}
+	return false;
+}
+
+bool linked_list_queue::dequeue(node** front, node** rear, int& element) {
+	// Underflow check
+	if (front == NULL)
+		return false;
+
+	// Store the front and move front one node ahead
+	node* del_node = (*front);
+	(*front) = (*front)->next;
+
+	// Get the popped element to return and delete the node
+	element = del_node->element;
+	delete(del_node);
+
+	// If front is NULL, then the queue is empty. Hence update the rear also as NULL
+	if ((*front) == NULL)
+		(*rear) = NULL;
+
 	return true;
 }
