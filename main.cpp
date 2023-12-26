@@ -38,6 +38,18 @@ bool get_input_from_user(int& input)
     return true;
 }
 
+bool processfile(string filename)
+{
+    ifstream file(filename);
+    if (file.is_open())
+    {
+        file.close();
+        return true;
+    }
+    else 
+        return false;
+
+}
 void command_prompt() {
     // Get the choice from user
     int input = -1;
@@ -55,8 +67,13 @@ void command_prompt() {
 
         case ENQUEUE_FILE_ARRAY:
             cout << "Enter the filename to enqueue its elements: ";
-            // TODO: Validate the file exists are not
+            // TODO: Validate the file exists are not1
             cin >> filename;
+            if(!processfile(string (filename)))
+            {
+                cout << "File does not exist, Enter valid file";
+                break;
+            }
             if (q_arr.enqueue_input_file(filename))
                 cout << "File contents enqueued to array queue successfully" << endl;
             else
@@ -108,7 +125,6 @@ void command_prompt() {
                 cout << "Operation failed" << endl;
             break;
         case DEQUEUE_ELEMENT_ARRAY:
-            // TODO
             if (q_arr.dequeue(element))
                 cout << "Element " << element << " is deleted successfully" << endl;
             else

@@ -29,13 +29,13 @@ class queue_using_array
         int rear;
 
         // Number of elements in array_queue
-        int size = 0;
+        int size;
 
         // Maximum elements an array_queue can store
-        int capacity = 50000;
+        int capacity;
 
         // Array to store elements
-        int* array_queue = new int[capacity];
+        int* array_queue;
 
 
     public:

@@ -5,14 +5,18 @@ using namespace std;
 queue_using_array::queue_using_array()
 {
 	front = rear = -1;
+	capacity = 70000;
+	array_queue = new int[capacity];
 }
 
 queue_using_array::~queue_using_array()
 {	
-	while(front != rear)
-	{
-		front = front + 1;
-	}
+	// while(front != rear)
+	// {
+	// 	front = front + 1;
+	// }
+	delete []array_queue; 
+
 }
 
 bool queue_using_array::enqueue_input_file(string filename)
@@ -45,7 +49,7 @@ bool queue_using_array::enqueue_command_line(int element)
 	}
 	else
 	{
-		size = rear;
+		size = rear - front;
 		if(size == capacity)                                  // Check for the overflow condition
 		{
             capacity = 2 * capacity ;
