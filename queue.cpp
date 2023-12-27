@@ -210,7 +210,7 @@ bool linked_list_queue::search(node* front, int element)
 
 bool linked_list_queue::dequeue(node** front, node** rear, int& element) {
 	// Underflow check
-	if (front == NULL)
+	if ((*front) == NULL)
 		return false;
 
 	// Store the front and move front one node ahead

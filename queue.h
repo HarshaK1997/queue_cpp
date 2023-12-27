@@ -2,6 +2,7 @@
 #include <fstream>
 
 using namespace std;
+using namespace std::chrono;
 
 // Validate if the given string can be converted to integer or not.
 bool is_number(string text, int& value);
@@ -92,6 +93,16 @@ class queue_using_unsorted_linked_list : private linked_list_queue
 
         // Insert elements into the Queue from given file and returns true if success.
         // Search + Insert = O(N) + O(M) = O(MN), where N is number of elements in the queue and M is number of elements in the file.
+        // Detailed:
+        // If N is number of elements in teh queue and M is number of elements in the file.
+        // For 1st element insert: N searches + 1 insert = N + 1
+        // For 2nd element insert: N+1 searches + 1 insert = (N+1) + 1
+        // For 3rd element insert: N+2 searches + 1 insert = (N+2) + 1
+        // For Mth element insert: N+(M-1) searches + 1 insert = (N+M-1) + 1
+        // Total time = N+1 + N+2 + N+3 + ... + N+M
+        // = MN + (1+2+3+...+M)
+        // = MN + M(M+1)/2
+        // = O(MN) + O(M^2 + M)
         bool enqueue_input_file(string filename);
 
         // Insert given element into the Queue from command line and returns true if success.
@@ -128,6 +139,16 @@ class queue_using_sorted_linked_list : private linked_list_queue
 
         // Insert elements into the Queue from given file and returns true if success.
         // Search + Insert = O(N) + O(M) = O(MN), where N is number of elements in the queue and M is number of elements in the file.
+        // Detailed:
+        // If N is number of elements in teh queue and M is number of elements in the file.
+        // For 1st element insert: N searches + 1 insert = N + 1
+        // For 2nd element insert: N+1 searches + 1 insert = (N+1) + 1
+        // For 3rd element insert: N+2 searches + 1 insert = (N+2) + 1
+        // For Mth element insert: N+(M-1) searches + 1 insert = (N+M-1) + 1
+        // Total time = N+1 + N+2 + N+3 + ... + N+M
+        // = MN + (1+2+3+...+M)
+        // = MN + M(M+1)/2
+        // = O(MN) + O(M^2 + M)
         bool enqueue_input_file(string filename);
 
         // Insert given element into the Queue from command line and returns true if success.
