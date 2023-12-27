@@ -2,6 +2,7 @@
 #include <fstream>
 
 using namespace std;
+using namespace std::chrono;
 
 // Validate if the given string can be converted to integer or not.
 bool is_number(string text, int& value);
