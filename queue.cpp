@@ -40,15 +40,21 @@ queue_using_unsorted_linked_list::~queue_using_unsorted_linked_list()
 bool queue_using_unsorted_linked_list::enqueue_input_file(string filename)
 {
 	ifstream in(filename);
+
+	if (!in.good()) {
+        return false;
+    }
+
 	string text;
+	int value;
 
 	while(!in.eof()) {
 		// Get data from file
 		getline(in, text);
-		// Incase if the line is empty, skip it
-		if (text == "") continue;
-		// Convert string to integer and store it in unsorted linked list
-		enqueue_command_line(stoi(text));
+		// If the text can be converted to integer type, then store it in unsorted linked list
+		if (is_number(text, value)) {
+			enqueue_command_line(value);
+		}
 	}
 	return true;
 }
@@ -60,7 +66,6 @@ bool queue_using_unsorted_linked_list::enqueue_command_line(int element)
 		//duplicate
 		return false;
 	}
-	// TODO: Need to check if node can be created, if no space, then return false
 	node* new_node = new node(element);
 
 	// If queue is empty, then front and rear = new node
@@ -109,15 +114,21 @@ queue_using_sorted_linked_list::~queue_using_sorted_linked_list()
 bool queue_using_sorted_linked_list::enqueue_input_file(string filename)
 {
 	ifstream in(filename);
+
+	if (!in.good()) {
+        return false;
+    }
+
 	string text;
+	int value;
 
 	while(!in.eof()) {
 		// Get data from file
 		getline(in, text);
-		// Incase if the line is empty, skip it
-		if (text == "") continue;
-		// Convert string to integer and store it in unsorted linked list
-		enqueue_command_line(stoi(text));
+		// If the text can be converted to integer type, then store it in unsorted linked list
+		if (is_number(text, value)) {
+			enqueue_command_line(value);
+		}
 	}
 	return true;
 }
@@ -125,7 +136,6 @@ bool queue_using_sorted_linked_list::enqueue_input_file(string filename)
 bool queue_using_sorted_linked_list::enqueue_command_line(int element)
 {
 	// Create a new node
-	// TODO: Need to check if node can be created, if no space, then return false
 	node* new_node = new node(element);
 
 	// If linked list is empty or first element in queue is greater than given element, put new_node at front
@@ -236,4 +246,21 @@ bool linked_list_queue::dequeue(node** front, node** rear, int& element) {
 		(*rear) = NULL;
 
 	return true;
+}
+
+bool is_number(string text, int& value)
+{
+    size_t pos;
+    try {
+        value = stoi(text, &pos);
+        // Check if the entire string is converted to an integer
+        if (pos == text.length()) {
+            // Text is an integer
+            return true;
+        }
+    }
+    catch (...) {
+        // The text is not integer
+    }
+    return false;
 }
