@@ -3,6 +3,9 @@
 
 using namespace std;
 
+// Validate if the given string can be converted to integer or not.
+bool is_number(string text, int& value);
+
 struct node {
     // Data to be stored
     int element;

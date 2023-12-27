@@ -1,5 +1,21 @@
 #include "main.h"
 
+int get_and_validate_integer_input()
+{
+    string input_string;
+    // Regex pattern for integer
+    regex pattern("^-?\\d+$");
+
+    cin >> input_string;
+    // Loop till user gives an integer input
+    while(!regex_match(input_string, pattern)) {
+        cout << "Enter only integer input: ";
+        cin >> input_string;
+    }
+
+    return stoi(input_string);
+}
+
 bool get_input_from_user(int& input)
 {
     cout << "\nQueue implementation using Array and Linked List:" << endl;
@@ -19,18 +35,9 @@ bool get_input_from_user(int& input)
     cout << "13. Display Sorted List elements" << endl;
     cout << "14. Exit" << endl;
     cout << "Enter your choice: ";
-    cin >> input;
-
-    if (!cin.good()) {
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cout << "\n*** Invalid input, try again ***" << endl;
-        return false;
-    }
+    input = get_and_validate_integer_input();
 
     if (input < ENQUEUE_FILE_ARRAY || input > EXIT) {
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << "\n*** Invalid option entered, try again ***" << endl;
         return false;
     }
@@ -58,7 +65,6 @@ void command_prompt() {
             break;
         case ENQUEUE_FILE_LIST:
             cout << "Enter the filename to enqueue its elements: ";
-            // TODO: Validate the file exists etc
             cin >> filename;
             if (q_list.enqueue_input_file(filename))
                 cout << "File contents enqueued to linked list queue successfully" << endl;
@@ -67,7 +73,6 @@ void command_prompt() {
             break;
         case ENQUEUE_FILE_SORTED_LIST:
             cout << "Enter the filename to enqueue its elements: ";
-            // TODO: Validate the file exists etc
             cin >> filename;
             if (q_sorted_list.enqueue_input_file(filename))
                 cout << "File contents enqueued to sorted linked list queue successfully" << endl;
@@ -79,8 +84,7 @@ void command_prompt() {
             break;
         case ENQUEUE_ELEMENT_LIST:
             cout << "Enter the element to Enqueue: ";
-            // TODO Check if its integer, need to have common function
-            cin >> element;
+            element = get_and_validate_integer_input();
             if (q_list.enqueue_command_line(element))
                 cout << "Element inserted successfully" << endl;
             else
@@ -88,8 +92,7 @@ void command_prompt() {
             break;
         case ENQUEUE_ELEMENT_SORTED_LIST:
             cout << "Enter the element to Enqueue: ";
-            // TODO Check if its integer, need to have common function
-            cin >> element;
+            element = get_and_validate_integer_input();
             if (q_sorted_list.enqueue_command_line(element))
                 cout << "Element inserted successfully" << endl;
             else
@@ -112,8 +115,7 @@ void command_prompt() {
             break;
         case SEARCH_ELEMENT_SORTED_LIST:
             cout << "Enter the element to search in sorted queue: ";
-            // TODO Check if its integer, need to have common function
-            cin >> element;
+            element = get_and_validate_integer_input();
             if (q_sorted_list.search(element))
                 cout << "Given element " << element << " is found in the list" << endl;
             else
@@ -123,17 +125,16 @@ void command_prompt() {
             break;
         case DISPLAY_LIST:
             cout << "Enter number of elements to display: ";
-            // TODO Check if its integer, need to have common function
-            cin >> num_of_elements;
+            num_of_elements = get_and_validate_integer_input();
             q_list.display_queue_elements(num_of_elements);
             break;
         case DISPLAY_SORTED_LIST:
             cout << "Enter number of elements to display: ";
-            // TODO Check if its integer, need to have common function
-            cin >> num_of_elements;
+            num_of_elements = get_and_validate_integer_input();
             q_sorted_list.display_queue_elements(num_of_elements);
             break;
         case EXIT:
+            cout << "Thank you!" << endl;
             return;
         default:
             cout << "Unknown error occurred" << endl;
