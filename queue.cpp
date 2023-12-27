@@ -238,6 +238,7 @@ bool queue_using_sorted_linked_list::enqueue_input_file(string filename)
 {
 	ifstream in(filename);
 
+	// Check if file exists
 	if (!in.good())
 	{
 		return false;
@@ -274,6 +275,7 @@ bool queue_using_sorted_linked_list::enqueue_command_line(int element)
 	if (front->element == new_node->element)
 	{
 		// Duplicate
+		cout << "Duplicate element " << element << " exists" << endl;
 		return false;
 	}
 
@@ -286,6 +288,7 @@ bool queue_using_sorted_linked_list::enqueue_command_line(int element)
 	if (current->element == new_node->element)
 	{
 		// Duplicate
+		cout << "Duplicate element " << element << " exists" << endl;
 		return false;
 	}
 
