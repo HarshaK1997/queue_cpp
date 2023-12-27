@@ -9,8 +9,9 @@ bool get_input_from_user(int &input);
 int get_and_validate_integer_input();
 
 // Enum type of choices
-enum input_type {
-    ENQUEUE_FILE_ARRAY=1,
+enum input_type
+{
+    ENQUEUE_FILE_ARRAY = 1,
     ENQUEUE_FILE_LIST,
     ENQUEUE_FILE_SORTED_LIST,
     ENQUEUE_ELEMENT_ARRAY,

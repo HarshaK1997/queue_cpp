@@ -8,7 +8,8 @@ int get_and_validate_integer_input()
 
     cin >> input_string;
     // Loop till user gives an integer input
-    while(!regex_match(input_string, pattern)) {
+    while (!regex_match(input_string, pattern))
+    {
         cout << "Enter only integer input: ";
         cin >> input_string;
     }
@@ -16,10 +17,11 @@ int get_and_validate_integer_input()
     return stoi(input_string);
 }
 
-bool get_input_from_user(int& input)
+bool get_input_from_user(int &input)
 {
     cout << "\nQueue implementation using Array and Linked List:" << endl;
-    cout << "===== ============== ===== ===== === ====== =====\n" << endl;
+    cout << "===== ============== ===== ===== === ====== =====\n"
+         << endl;
     cout << " 1. Enqueue elements from file(s) to Array" << endl;
     cout << " 2. Enqueue elements from file(s) to Linked List" << endl;
     cout << " 3. Enqueue elements from file(s) to Sorted List" << endl;
@@ -37,7 +39,8 @@ bool get_input_from_user(int& input)
     cout << "Enter your choice: ";
     input = get_and_validate_integer_input();
 
-    if (input < ENQUEUE_FILE_ARRAY || input > EXIT) {
+    if (input < ENQUEUE_FILE_ARRAY || input > EXIT)
+    {
         cout << "\n*** Invalid option entered, try again ***" << endl;
         return false;
     }
@@ -45,19 +48,8 @@ bool get_input_from_user(int& input)
     return true;
 }
 
-bool processfile(string filename)
+void command_prompt()
 {
-    ifstream file(filename);
-    if (file.is_open())
-    {
-        file.close();
-        return true;
-    }
-    else 
-        return false;
-
-}
-void command_prompt() {
     // Get the choice from user
     int input = -1;
     int element = -1;
@@ -70,22 +62,19 @@ void command_prompt() {
     // steady_clock::time_point stop;
     // steady_clock::duration duration;
 
-    while (true) {
+    while (true)
+    {
         // Loop till the user enters valid input
-        while(!get_input_from_user(input));
+        while (!get_input_from_user(input))
+            ;
         auto start = high_resolution_clock::now();
 
-        switch (input) {
+        switch (input)
+        {
 
         case ENQUEUE_FILE_ARRAY:
             cout << "Enter the filename to enqueue its elements: ";
-            // TODO: Validate the file exists are not1
             cin >> filename;
-            if(!processfile(string (filename)))
-            {
-                cout << "File does not exist, Enter valid file";
-                break;
-            }
             if (q_arr.enqueue_input_file(filename))
                 cout << "File contents enqueued to array queue successfully" << endl;
             else
@@ -109,13 +98,7 @@ void command_prompt() {
             break;
         case ENQUEUE_ELEMENT_ARRAY:
             cout << "Enter the element to Enqueue: ";
-            // TODO Check if integer, need to have common function
-            cin >> element;
-            // if (!isdigit(element))
-            // {
-            //     cout << "Enter elements of Integer type" << endl;
-            //     break;
-            // }
+            element = get_and_validate_integer_input();
             if (q_arr.enqueue_command_line(element))
                 cout << "Element inserted successfully" << endl;
             else
@@ -165,8 +148,7 @@ void command_prompt() {
             break;
         case DISPLAY_ARRAY:
             cout << "Enter number of elements to display: ";
-            // TODO Check if its integer, need to have common function
-            cin >> num_of_elements;
+            num_of_elements = get_and_validate_integer_input();
             q_arr.display_queue_elements(num_of_elements);
             break;
         case DISPLAY_LIST:
