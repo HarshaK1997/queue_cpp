@@ -24,17 +24,7 @@ queue_using_unsorted_linked_list::queue_using_unsorted_linked_list()
 
 queue_using_unsorted_linked_list::~queue_using_unsorted_linked_list()
 {
-    node* current = front;
-    node* next = NULL;
- 
-    while (current != NULL) 
-    {
-        next = current->next;
-        delete(current);
-        current = next;
-    }
-
-    front = rear = NULL;
+	linked_list_queue::destroy_nodes(&front, &rear);
 }
 
 bool queue_using_unsorted_linked_list::enqueue_input_file(string filename)
@@ -53,7 +43,7 @@ bool queue_using_unsorted_linked_list::enqueue_input_file(string filename)
 		getline(in, text);
 		// If the text can be converted to integer type, then store it in unsorted linked list
 		if (is_number(text, value)) {
-			enqueue_command_line(value);
+			queue_using_unsorted_linked_list::enqueue_command_line(value);
 		}
 	}
 	return true;
@@ -62,7 +52,7 @@ bool queue_using_unsorted_linked_list::enqueue_input_file(string filename)
 bool queue_using_unsorted_linked_list::enqueue_command_line(int element)
 {
 	// Create a new node
-	if (search(front, element)) {
+	if (linked_list_queue::search(front, element)) {
 		//duplicate
 		return false;
 	}
@@ -87,7 +77,7 @@ bool queue_using_unsorted_linked_list::dequeue(int& element)
 
 void queue_using_unsorted_linked_list::display_queue_elements(int num_of_elements)
 {
-	print_linked_list_elements(front, num_of_elements);
+	linked_list_queue::print_linked_list_elements(front, num_of_elements);
 	return;
 }
 
@@ -98,17 +88,7 @@ queue_using_sorted_linked_list::queue_using_sorted_linked_list()
 
 queue_using_sorted_linked_list::~queue_using_sorted_linked_list()
 {
-    node* current = front;
-    node* next = NULL;
- 
-    while (current != NULL) 
-    {
-        next = current->next;
-        delete(current);
-        current = next;
-    }
-
-    front = rear = NULL;
+	linked_list_queue::destroy_nodes(&front, &rear);
 }
 
 bool queue_using_sorted_linked_list::enqueue_input_file(string filename)
@@ -127,7 +107,7 @@ bool queue_using_sorted_linked_list::enqueue_input_file(string filename)
 		getline(in, text);
 		// If the text can be converted to integer type, then store it in unsorted linked list
 		if (is_number(text, value)) {
-			enqueue_command_line(value);
+			queue_using_sorted_linked_list::enqueue_command_line(value);
 		}
 	}
 	return true;
@@ -190,7 +170,7 @@ bool queue_using_sorted_linked_list::dequeue(int& element)
 
 void queue_using_sorted_linked_list::display_queue_elements(int num_of_elements)
 {
-	print_linked_list_elements(front, num_of_elements);
+	linked_list_queue::print_linked_list_elements(front, num_of_elements);
 	return;
 }
 
@@ -246,6 +226,21 @@ bool linked_list_queue::dequeue(node** front, node** rear, int& element) {
 		(*rear) = NULL;
 
 	return true;
+}
+
+void linked_list_queue::destroy_nodes(node** front, node** rear)
+{
+    node* current = (*front);
+    node* next = NULL;
+ 
+    while (current != NULL) 
+    {
+        next = current->next;
+        delete(current);
+        current = next;
+    }
+
+    (*front) = (*rear) = NULL;
 }
 
 bool is_number(string text, int& value)
