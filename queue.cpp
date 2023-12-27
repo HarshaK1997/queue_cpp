@@ -5,16 +5,13 @@ using namespace std;
 queue_using_array::queue_using_array()
 {
 	front = rear = -1;
-	capacity = 70000;
+	capacity = 3;
 	array_queue = new int[capacity];
 }
 
 queue_using_array::~queue_using_array()
 {	
-	// while(front != rear)
-	// {
-	// 	front = front + 1;
-	// }
+
 	delete []array_queue; 
 
 }
@@ -44,14 +41,19 @@ bool queue_using_array::enqueue_command_line(int element)
 	{
 		front = 0;
 		rear = 0;
-		array_queue[rear] = element;
+		//array_queue[rear] = element;
 	
 	}
-	else
-	{
-		size = rear - front;
-		if(size == capacity)                                  // Check for the overflow condition
+		size = rear - front -1;
+		if(front!=0 && rear >= capacity)                           //Implementing circular queue
 		{
+			array_queue[rear%capacity] = element;
+			front -=1;
+		}
+	
+		else if(size == capacity)                                  // Check for the overflow condition
+		{
+	
             capacity = 2 * capacity ;
 			int* array_queue_new = new int[capacity];
 			for (int i = 0; i < size; i++)
@@ -62,11 +64,9 @@ bool queue_using_array::enqueue_command_line(int element)
 			array_queue = array_queue_new;                           //Change the array name
 			array_queue_new = NULL;                              //Delete the new array name
 		}	
-
-		rear = (rear + 1);              //rear is incremented to add the element
-		array_queue[rear] = element;    //Add the element at the end of the queue
-
-	}
+			
+			array_queue[rear] = element;    //Add the element at the end of the queue
+			rear = (rear + 1);              //rear is incremented to add the element
 
 	return true;
 }
@@ -88,7 +88,7 @@ bool queue_using_array::dequeue(int& element)
 	else
 	{
 		element = array_queue[front];  //Assign the front element to be deleted to element
-		front = (front + 1)%capacity;  //Increment the front by 1 for circular queue
+		front = (front + 1);  //Increment the front by 1 for circular queue
 
 		return true;
 	}
@@ -102,11 +102,11 @@ bool queue_using_array::display_queue_elements(int num_of_elements)
 
 	else
 	{
-		cout << "Elements in the Queue are ";      //Display the elements
-		while (current <= rear && current <= num_of_elements)
+		cout << "Elements in the Queue are " << endl;      //Display the elements
+		while (current < rear && current < num_of_elements)
 		{
 			cout << array_queue[current] << endl;          
-			current = (current + 1)%capacity;   //Increment the current value
+			current = (current + 1);   //Increment the current value
 
 		}
 	}

@@ -101,6 +101,11 @@ void command_prompt() {
             cout << "Enter the element to Enqueue: ";
             // TODO Check if integer, need to have common function
             cin >> element;
+            // if (!isdigit(element))
+            // {
+            //     cout << "Enter elements of Integer type" << endl;
+            //     break;
+            // }
             if (q_arr.enqueue_command_line(element))
                 cout << "Element inserted successfully" << endl;
             else
