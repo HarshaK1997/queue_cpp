@@ -54,10 +54,14 @@ void command_prompt() {
     queue_using_array q_arr;
     queue_using_unsorted_linked_list q_list;
     queue_using_sorted_linked_list q_sorted_list;
+    // system_clock::time_point start;
+    // steady_clock::time_point stop;
+    // steady_clock::duration duration;
 
     while (true) {
         // Loop till the user enters valid input
         while(!get_input_from_user(input));
+        auto start = high_resolution_clock::now();
 
         switch (input) {
         case ENQUEUE_FILE_ARRAY:
@@ -140,6 +144,9 @@ void command_prompt() {
             cout << "Unknown error occurred" << endl;
             return;
         }
+        auto stop = high_resolution_clock::now();
+        auto duration = duration_cast<nanoseconds>(stop - start);
+        cout << "Time taken by the operation: " << duration.count() << " nanoseconds" << endl;
     }
 }
 
