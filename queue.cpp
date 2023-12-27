@@ -7,6 +7,7 @@ queue_using_array::queue_using_array()
 	front = rear = -1;
 	capacity = 3;
 	array_queue = new int[capacity];
+
 }
 
 queue_using_array::~queue_using_array()
@@ -41,32 +42,45 @@ bool queue_using_array::enqueue_command_line(int element)
 	{
 		front = 0;
 		rear = 0;
-		//array_queue[rear] = element;
+		size = 0;
 	
 	}
-		size = rear - front -1;
+	
+
 		if(front!=0 && rear >= capacity)                           //Implementing circular queue
 		{
-			array_queue[rear%capacity] = element;
+			array_queue[rear] = element;
 			front -=1;
 		}
 	
 		else if(size == capacity)                                  // Check for the overflow condition
 		{
-	
             capacity = 2 * capacity ;
 			int* array_queue_new = new int[capacity];
-			for (int i = 0; i < size; i++)
+			int i;
+			int new_rear = 0;
+			for (i = front;i!= rear; i = (i+1)%(capacity/2))
 			{
-				array_queue_new[i] = array_queue[i];
+				array_queue_new[new_rear++] = array_queue[i];
 			}
-			delete []array_queue;                                     //Delete old memory
-			array_queue = array_queue_new;                           //Change the array name
+			array_queue_new[new_rear] = array_queue[i];
+			delete []array_queue;                                 //Delete old memory
+			array_queue = array_queue_new;                       //Change the array name
 			array_queue_new = NULL;                              //Delete the new array name
-		}	
-			
+			front = 0;
+			rear = new_rear;
+		}
+			for (int j= front;j<=rear;j++)                       //Looping through the elements
+			{
+				if(j==element)                                  //Check if element is already present                           
+				cout <<"Element already present, add unique element" << endl;                                
+				return true;
+			}	
+
 			array_queue[rear] = element;    //Add the element at the end of the queue
-			rear = (rear + 1);              //rear is incremented to add the element
+			cout << array_queue[0];
+			size ++;
+			rear = (rear + 1)%capacity;     //rear is incremented to add the element
 
 	return true;
 }
@@ -103,8 +117,10 @@ bool queue_using_array::display_queue_elements(int num_of_elements)
 	else
 	{
 		cout << "Elements in the Queue are " << endl;      //Display the elements
+		cout << front << " " << rear << endl;
 		while (current < rear && current < num_of_elements)
 		{
+			cout << "Here";
 			cout << array_queue[current] << endl;          
 			current = (current + 1);   //Increment the current value
 
